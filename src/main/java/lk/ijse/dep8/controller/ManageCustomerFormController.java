@@ -87,6 +87,11 @@ public class ManageCustomerFormController {
             txtAddress.selectAll();
             return;
         }
+        else if (txtImage.getText().trim().isEmpty()) {
+            txtImage.requestFocus();
+            txtImage.selectAll();
+            return;
+        }
 
 //        boolean b = tblCustomers.getItems().stream().anyMatch(c -> c.getId().equalsIgnoreCase(txtID.getText()));
 //
@@ -113,6 +118,7 @@ public class ManageCustomerFormController {
             txtID.clear();
             txtName.clear();
             txtAddress.clear();
+            txtImage.clear();
         }
 
         txtID.requestFocus();
@@ -177,5 +183,26 @@ public class ManageCustomerFormController {
     }
 
     public void btnUpdateDetails_OnActiion(ActionEvent actionEvent) {
+        Customer updateCus = new Customer(
+                txtID.getText(),
+                txtImage.getText(), txtName.getText(),
+                txtAddress.getText());
+        tblCustomers.getItems().remove(selectedIndex);
+        tblCustomers.getItems().add(updateCus);
+        boolean result = saveCustomers();
+
+        if (!result) {
+            new Alert(Alert.AlertType.ERROR, "Failed to Update the customer, try again").show();
+            tblCustomers.getItems().remove(updateCus);
+        } else {
+            txtID.clear();
+            txtName.clear();
+            txtAddress.clear();
+            txtImage.clear();
+        }
+
+        txtID.requestFocus();
+        disableControls(true);
+        brnNewCustomer.setDisable(false);
     }
 }
