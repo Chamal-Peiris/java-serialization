@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import lk.ijse.dep8.Customer;
 
 import java.io.*;
@@ -128,4 +129,18 @@ public class ManageCustomerFormController {
         }
     }
 
+    public void btnBrowseOnAction(ActionEvent actionEvent) {
+        FileChooser fs = new FileChooser();
+        fs.setTitle("Select an Image");
+        fs.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.jpg"));
+        File file = fs.showOpenDialog(null);
+        txtImage.setText(file.getAbsolutePath());
+
+    }
+
+    public void btnNewCustomer_OnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnUpdateDetails_OnActiion(ActionEvent actionEvent) {
+    }
 }
