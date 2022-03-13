@@ -23,6 +23,11 @@ public class ManageCustomerFormController {
     public TextField txtAddress;
     public TableView<Customer> tblCustomers;
     public TextField txtImage;
+    public int selectedIndex;
+    public Button btnUpdateDetails;
+    public Button brnNewCustomer;
+    public Button btnBrowse;
+    public Button btnSaveCustomer;
 
     public void initialize() {
         tblCustomers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -39,7 +44,30 @@ public class ManageCustomerFormController {
             return new ReadOnlyObjectWrapper<>(btnDelete);
         });
 
+        tblCustomers.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            disableControls(false);
+            btnSaveCustomer.setDisable(true);
+            txtName.setText(newValue.getName());
+            txtImage.setText(newValue.getImage_path());              //add select customer feature
+            txtAddress.setText(newValue.getAddress());
+            txtID.setText(newValue.getId());
+            txtID.setEditable(false);
+            selectedIndex = tblCustomers.getSelectionModel().getSelectedIndex();
+            // System.out.println(selectedIndex);
+
+
+        });
+
         initDatabase();
+    }
+    private void disableControls(boolean disable) {
+        txtID.setDisable(disable);
+        txtName.setDisable(disable);
+        txtAddress.setDisable(disable);
+        txtImage.setDisable(disable);
+        btnBrowse.setDisable(disable);
+        btnSaveCustomer.setDisable(disable);
+        btnUpdateDetails.setDisable(disable);
     }
 
     public void btnSaveCustomer_OnAction(ActionEvent actionEvent) {
