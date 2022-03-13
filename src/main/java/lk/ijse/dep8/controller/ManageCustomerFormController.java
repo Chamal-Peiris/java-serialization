@@ -37,6 +37,7 @@ public class ManageCustomerFormController {
         TableColumn<Customer, Button> lastCol = (TableColumn<Customer, Button>) tblCustomers.getColumns().get(3);
         lastCol.setCellValueFactory(param -> {
             Button btnDelete = new Button("Delete");
+            btnDelete.setStyle("-fx-background-color: red;-fx-text-fill: white;");
             btnDelete.setOnAction(event -> {
                 tblCustomers.getItems().remove(param.getValue());
                 saveCustomers();
@@ -167,6 +168,12 @@ public class ManageCustomerFormController {
     }
 
     public void btnNewCustomer_OnAction(ActionEvent actionEvent) {
+        disableControls(false);
+        btnUpdateDetails.setDisable(true);
+        txtImage.clear();
+        txtID.clear();
+        txtAddress.clear();
+        txtName.clear();
     }
 
     public void btnUpdateDetails_OnActiion(ActionEvent actionEvent) {
