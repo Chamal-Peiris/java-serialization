@@ -25,11 +25,11 @@
 ![](assets/image/AddCustomer.png)
 
 ## Select Customer
-![](assets/image/SelectCustomer.png)
+![](assets/image/SelectCustomers.png)
 
 ## Update Customers
 
-![](assets/image/UpdateCustomer.png)
+![](assets/image/UpdateCustomers.png)
 
 
 ## Usage
