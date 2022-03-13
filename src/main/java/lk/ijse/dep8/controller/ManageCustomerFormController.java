@@ -21,6 +21,7 @@ public class ManageCustomerFormController {
     public TextField txtName;
     public TextField txtAddress;
     public TableView<Customer> tblCustomers;
+    public TextField txtImage;
 
     public void initialize() {
         tblCustomers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -68,7 +69,7 @@ public class ManageCustomerFormController {
 //        }
 
         Customer newCustomer = new Customer(
-                txtID.getText(),
+                txtID.getText(),txtImage.getText(),
                 txtName.getText(),
                 txtAddress.getText());
         tblCustomers.getItems().add(newCustomer);
