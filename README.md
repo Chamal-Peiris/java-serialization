@@ -17,7 +17,7 @@
 
 ## Main User Interface
 
-![](assets/image/MainUI.png)
+![](assets/image/MainUIImage.png)
 
 
 ## Add Customers
