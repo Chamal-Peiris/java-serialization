@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
     private String id;
-    private String image_path;
+    private byte[] image;
     private String name;
     private String address;
 
     public Customer() {
     }
 
-    public Customer(String id, String image_path, String name, String address) {
+    public Customer(String id, byte[] image, String name, String address) {
         this.id = id;
-        this.image_path = image_path;
+        this.image = image;
         this.name = name;
         this.address = address;
     }
@@ -55,11 +55,11 @@ public class Customer implements Serializable {
         System.out.printf("id=%s, name=%s, address=%s\n", id, name, address);
     }
 
-    public String getImage_path() {
-        return image_path;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

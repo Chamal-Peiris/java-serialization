@@ -43,12 +43,13 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <TableView fx:id="tblCustomers" layoutX="24.0" layoutY="288.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="16.0">
+      <TableView fx:id="tblCustomers" layoutX="24.0" layoutY="288.0" prefHeight="194.0" prefWidth="550.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="26.0">
          <columns>
             <TableColumn prefWidth="75.0" style="-fx-font-family: Ubuntu;" text="ID" />
             <TableColumn prefWidth="150.0" style="-fx-font-family: Ubuntu;" text="NAME" />
-            <TableColumn prefWidth="214.0" style="-fx-font-family: Ubuntu;" text="ADDRESS" />
-            <TableColumn prefWidth="93.0" />
+            <TableColumn prefWidth="104.0" style="-fx-font-family: Ubuntu;" text="ADDRESS" />
+            <TableColumn prefWidth="134.0" style="-fx-font-family: Ubuntu;" text="IMAGE" />
+            <TableColumn prefWidth="134.0" style="-fx-font-family: Ubuntu;" />
          </columns>
       </TableView>
       <Label layoutX="35.0" layoutY="163.0" text="Image :" textFill="#fff7f7" />

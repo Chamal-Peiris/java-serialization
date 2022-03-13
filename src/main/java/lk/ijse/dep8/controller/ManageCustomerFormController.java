@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import lk.ijse.dep8.Customer;
 
@@ -34,7 +36,20 @@ public class ManageCustomerFormController {
         tblCustomers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblCustomers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
-        TableColumn<Customer, Button> lastCol = (TableColumn<Customer, Button>) tblCustomers.getColumns().get(3);
+        TableColumn<Customer, ImageView> customerTableColumn = (TableColumn<Customer, ImageView>) tblCustomers.getColumns().get(3);
+        customerTableColumn.setCellValueFactory(param -> {
+            byte[] image = param.getValue().getImage();
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(image);
+            ImageView imageView = new ImageView(new Image(byteArrayInputStream));
+            imageView.setFitHeight(75);
+            imageView.setFitWidth(75);
+            return new ReadOnlyObjectWrapper<>(imageView);
+
+        });
+
+
+
+        TableColumn<Customer, Button> lastCol = (TableColumn<Customer, Button>) tblCustomers.getColumns().get(4);
         lastCol.setCellValueFactory(param -> {
             Button btnDelete = new Button("Delete");
             btnDelete.setStyle("-fx-background-color: red;-fx-text-fill: white;");
@@ -49,7 +64,7 @@ public class ManageCustomerFormController {
             disableControls(false);
             btnSaveCustomer.setDisable(true);
             txtName.setText(newValue.getName());
-            txtImage.setText(newValue.getImage_path());              //add select customer feature
+            txtImage.setText("[Picture]");              //add select customer feature
             txtAddress.setText(newValue.getAddress());
             txtID.setText(newValue.getId());
             txtID.setEditable(false);
@@ -71,7 +86,7 @@ public class ManageCustomerFormController {
         btnUpdateDetails.setDisable(disable);
     }
 
-    public void btnSaveCustomer_OnAction(ActionEvent actionEvent) {
+    public void btnSaveCustomer_OnAction(ActionEvent actionEvent) throws IOException {
 
         if (!txtID.getText().matches("C\\d{3}") ||
                 tblCustomers.getItems().stream().anyMatch(c -> c.getId().equalsIgnoreCase(txtID.getText()))) {
@@ -103,8 +118,11 @@ public class ManageCustomerFormController {
 //            }
 //        }
 
+
+
+
         Customer newCustomer = new Customer(
-                txtID.getText(),txtImage.getText(),
+                txtID.getText(),generateBuffer(),
                 txtName.getText(),
                 txtAddress.getText());
         tblCustomers.getItems().add(newCustomer);
@@ -172,6 +190,9 @@ public class ManageCustomerFormController {
         File file = fs.showOpenDialog(null);
         txtImage.setText(file.getAbsolutePath());
 
+
+
+
     }
 
     public void btnNewCustomer_OnAction(ActionEvent actionEvent) {
@@ -183,10 +204,11 @@ public class ManageCustomerFormController {
         txtName.clear();
     }
 
-    public void btnUpdateDetails_OnActiion(ActionEvent actionEvent) {
+    public void btnUpdateDetails_OnActiion(ActionEvent actionEvent) throws IOException {
+
         Customer updateCus = new Customer(
                 txtID.getText(),
-                txtImage.getText(), txtName.getText(),
+                generateBuffer(), txtName.getText(),
                 txtAddress.getText());
         tblCustomers.getItems().remove(selectedIndex);
         tblCustomers.getItems().add(updateCus);
@@ -206,5 +228,16 @@ public class ManageCustomerFormController {
         txtID.requestFocus();
         disableControls(true);
         brnNewCustomer.setDisable(false);
+    }
+    //generate image buffer
+    private byte[] generateBuffer() throws IOException {
+
+        //converting image to byte array
+        Path path = Paths.get(txtImage.getText());
+        InputStream is = Files.newInputStream(path);
+        byte[] buffer= new byte[is.available()];
+        is.read(buffer);
+        is.close();
+        return buffer;
     }
 }
