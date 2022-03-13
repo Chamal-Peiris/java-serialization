@@ -1,5 +1,5 @@
 # Java Serialization
-** This repository consists of an application that was developed in order to learn and understand how serialization and deserialization works in java. Basically, the objects will be converted to bytes and stored in a text file which is allocated as a local resource and at the same time , fetched via  deserialzation and displayed on a table. Furthermore, java ObjectInputStream and ObjectOutPutStream classes are made use inorder to achieve bother serialization and deserialization**
+**This repository consists of an application that was developed in order to learn and understand how serialization and deserialization works in java. Basically, the objects will be converted to bytes and stored in a text file which is allocated as a local resource and at the same time , fetched via  deserialzation and displayed on a table. Furthermore, java ObjectInputStream and ObjectOutPutStream classes are made use inorder to achieve bother serialization and deserialization**
 ### How to use this repo?
 
 1. Clone the repository first  'git clone'
