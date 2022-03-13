@@ -119,6 +119,7 @@ public class ManageCustomerFormController {
             txtName.clear();
             txtAddress.clear();
             txtImage.clear();
+            new Alert(Alert.AlertType.INFORMATION,"Customer details added Successfully!").show();
         }
 
         txtID.requestFocus();
@@ -199,6 +200,7 @@ public class ManageCustomerFormController {
             txtName.clear();
             txtAddress.clear();
             txtImage.clear();
+            new Alert(Alert.AlertType.INFORMATION,"Customer details Updated Successfully!").show();
         }
 
         txtID.requestFocus();
